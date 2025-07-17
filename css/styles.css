@@ -4293,6 +4293,24 @@ textarea.form-control-lg {
 .card-group > .card {
   margin-bottom: var(--bs-card-group-margin);
 }
+.alert-success {
+    color: green;
+    background: #eaffea;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid green;
+    border-radius: 5px;
+}
+.alert-error {
+    color: red;
+    background: #ffeaea;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+
 @media (min-width: 576px) {
   .card-group {
     display: flex;
