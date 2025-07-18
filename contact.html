@@ -55,7 +55,7 @@
                                 <!-- To make this form functional, sign up at-->
                                 <!-- https://startbootstrap.com/solution/contact-forms-->
                                 <!-- to get an API token!-->
-                                <form id="contactForm" action="contact.php"  method="post">
+                                <form id="contactForm"  method="post">
                                     <!-- Name input-->
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="name" type="text" placeholder="Enter your name..." required  name="fname"/>
@@ -110,6 +110,38 @@
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
         <script>
+
+            document.getElementById("contactForm").addEventListener("submit", async function(e) {
+                e.preventDefault();
+
+                const formData = new FormData(this);
+                const data = {
+                fname: formData.get("fname"),
+                number: formData.get("number"),
+                email: formData.get("email"),
+                message: formData.get("message"),
+                };
+
+                try {
+                const res = await fetch("/api/contact", {
+                    method: "POST",
+                    headers: {
+                    "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await res.json();
+                if (result.status === "success") {
+                    alert("Message sent successfully!");
+                } else {
+                    alert("Failed to send message.");
+                }
+                } catch (err) {
+                alert("An error occurred: " + err.message);
+                }
+            });
+
         const params = new URLSearchParams(window.location.search);
         const status = params.get('status');
         const alertBox = document.getElementById('alert-box');
