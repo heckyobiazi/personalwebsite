@@ -9,13 +9,16 @@ export default async function handler(req, res) {
 
   const { fname, number, email, message } = req.body;
 
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'heckystudio@gmail.com',
-      pass: 'kvly daqa cyab vdkw' // Use an App Password (not your main Gmail password)
-    }
-  });
+ const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true, // true = port 465
+  auth: {
+    user: 'heckystudio@gmail.com',
+    pass: 'kvly daqa cyab vdkw' // Gmail App Password
+  }
+});
+
 
   const mailOptions = {
     from: 'heckystudio@gmail.com',
